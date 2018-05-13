@@ -23,8 +23,14 @@ class Paginator
      */
     public function __construct(int $totalPage, int $currentPage = 1, array $options = [])
     {
-        $this->currentPage = $currentPage;
+        if ($totalPage < 1) {
+            $totalPage = 1;
+        }
         $this->totalPage = $totalPage;
+        if ($currentPage < 1 || $currentPage > $totalPage) {
+            $currentPage = 1;
+        }
+        $this->currentPage = $currentPage;
         $this->options = $options;
     }
 
